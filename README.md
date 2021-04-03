@@ -1,7 +1,7 @@
 # bb8-rusqlite
 
-![crates.io version](https://img.shields.io/crates/v/bb8-rusqlite)
-![MIT licence](https://img.shields.io/crates/l/bb8-rusqlite)
+[![crates.io version](https://img.shields.io/crates/v/bb8-rusqlite)](https://crates.io/crates/bb8-rusqlite)
+[![MIT licence](https://img.shields.io/crates/l/bb8-rusqlite)](LICENSE)
 [![Documentation](https://img.shields.io/docsrs/bb8-rusqlite)](https://docs.rs/bb8-rusqlite)
 [![Build state](https://img.shields.io/github/workflow/status/LawnGnome/bb8-rusqlite/Rust)](https://github.com/LawnGnome/bb8-rusqlite/actions/workflows/rust.yml)
 
