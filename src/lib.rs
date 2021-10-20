@@ -12,6 +12,8 @@ use async_trait::async_trait;
 use bb8::ManageConnection;
 use rusqlite::{Connection, OpenFlags};
 
+pub use rusqlite;
+
 #[cfg(test)]
 mod tests;
 
