@@ -10,7 +10,7 @@ repository = "https://github.com/LawnGnome/bb8-rusqlite"
 [dependencies]
 async-trait = "0.1"
 bb8 = "0.7"
-rusqlite = "0.24"
+rusqlite = "0.26"
 thiserror = "1"
 tokio = { version = "1", features = ["rt", "rt-multi-thread"] }
 
