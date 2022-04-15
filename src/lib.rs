@@ -10,7 +10,7 @@ use std::{
 
 use async_trait::async_trait;
 use bb8::ManageConnection;
-use rusqlite::{Connection, OpenFlags, NO_PARAMS};
+use rusqlite::{Connection, OpenFlags};
 
 #[cfg(test)]
 mod tests;
@@ -113,14 +113,14 @@ impl ManageConnection for RusqliteConnectionManager {
 
     async fn is_valid(
         &self,
-        conn: &mut bb8::PooledConnection<'_, Self>,
+        conn: &mut Self::Connection,
     ) -> Result<(), Self::Error> {
         // Matching bb8-postgres, we'll try to run a trivial query here. Using
         // block_in_place() gives better behaviour if the SQLite call blocks for
         // some reason, but means that we depend on the tokio multi-threaded
         // runtime being active. (We can't use spawn_blocking() here because
         // Connection isn't Sync.)
-        tokio::task::block_in_place(|| conn.execute("SELECT 1", NO_PARAMS))?;
+        tokio::task::block_in_place(|| conn.execute("SELECT 1", []))?;
         Ok(())
     }
 

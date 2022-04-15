@@ -1,7 +1,7 @@
 use std::path::Path;
 
 use bb8_rusqlite::RusqliteConnectionManager;
-use rusqlite::{named_params, NO_PARAMS};
+use rusqlite::{named_params};
 use tempfile::NamedTempFile;
 use tokio::task;
 
@@ -15,15 +15,15 @@ async fn example(path: &Path) -> anyhow::Result<()> {
     // available non-blocking threads to do work on. (Of course, in this trivial
     // example, there's no actual need for this.)
     let value = task::block_in_place(move || -> anyhow::Result<i32> {
-        conn.execute("CREATE TABLE t (a INTEGER)", NO_PARAMS)?;
-        conn.execute_named(
+        conn.execute("CREATE TABLE t (a INTEGER)", [])?;
+        conn.execute(
             "INSERT INTO t (a) VALUES (:a)",
             named_params! {
                 ":a": 42,
             },
         )?;
 
-        Ok(conn.query_row("SELECT a FROM t", NO_PARAMS, |row| row.get(0))?)
+        Ok(conn.query_row("SELECT a FROM t", [], |row| row.get(0))?)
     })?;
 
     println!("we stored this value: {}", value);
